@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 2 Months, Shifu! ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #e6f7e6 0%, #f0f9e6 100%);
+            color: #2d5a2d;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header {
+            padding: 30px 0;
+            animation: fadeIn 2s ease;
+            position: relative;
+        }
+        
+        .lotus-icon {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 10px;
+            animation: lotusFloat 4s infinite ease-in-out;
+        }
+        
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .anniversary-number {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #388E3C;
+            margin-bottom: 10px;
+        }
+        
+        .music-player-container {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px auto 30px;
+            max-width: 500px;
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
+            color: white;
+        }
+        
+        .music-player {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .play-pause-btn {
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: #4CAF50;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-pause-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .prev-next-btn {
+            background: transparent;
+            border: 2px solid white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .prev-next-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .song-info {
+            text-align: left;
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+        
+        .song-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .song-artist {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .volume-slider {
+            width: 80px;
+        }
+        
+        .playlist {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        
+        .playlist-item {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: background 0.3s;
+            text-align: left;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .playlist-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .playlist-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+        }
+        
+        .playlist-item i {
+            font-size: 0.9rem;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: white;
+            border-radius: 5px;
+            transition: width 0.1s;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+        
+        .audio-warning {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .photo-frame {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            position: relative;
+            border: 15px solid white;
+            background-color: white;
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .photo-frame:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-caption {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            font-style: italic;
+            color: #388E3C;
+        }
+        
+        .memory-box {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 2px solid #C8E6C9;
+        }
+        
+        .memory-box h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #2e7d32;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .interactive-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .interactive-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+        
+        .interactive-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.4);
+            background: linear-gradient(135deg, #388E3C 0%, #689F38 100%);
+        }
+        
+        .music-btn {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+        }
+        
+        .love-message {
+            display: none;
+            background-color: #f1f8e9;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            animation: fadeInUp 0.8s ease;
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .love-letter {
+            background-color: #f9fbe7;
+            border-left: 5px solid #8BC34A;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            line-height: 1.6;
+            border-radius: 0 10px 10px 0;
+            display: none;
+            font-family: 'Quicksand', sans-serif;
+        }
+        
+        .photo-gallery {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .photo-gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 3px solid #C8E6C9;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .photo-gallery img:hover {
+            transform: scale(1.05);
+            border-color: #4CAF50;
+        }
+        
+        .countdown {
+            background-color: rgba(200, 230, 201, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .countdown h3 {
+            margin-bottom: 15px;
+            color: #2d5a2d;
+            font-size: 1.5rem;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 70px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .green-apple-section {
+            display: none;
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .apple-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .apple {
+            width: 60px;
+            height: 60px;
+            background-color: #8BC34A;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .apple:hover {
+            transform: scale(1.2);
+        }
+        
+        .apple-stem {
+            width: 5px;
+            height: 15px;
+            background-color: #8D6E63;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .apple-leaf {
+            width: 10px;
+            height: 15px;
+            background-color: #4CAF50;
+            position: absolute;
+            top: -8px;
+            left: 60%;
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(-45deg);
+        }
+        
+        .apple-message {
+            display: none;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid #C8E6C9;
+        }
+        
+        .relationship-timeline {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9fbe7;
+            border-radius: 15px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #C8E6C9;
+        }
+        
+        .timeline-date {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 120px;
+            margin-right: 20px;
+        }
+        
+        .timeline-content {
+            text-align: left;
+            flex: 1;
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid rgba(76, 175, 80, 0.2);
+            font-size: 0.9rem;
+            color: #4a774c;
+        }
+        
+        .heart {
+            color: #e53935;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+        
+        .green-heart {
+            color: #4CAF50;
+        }
+        
+        .lotus {
+            color: #4CAF50;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes lotusFloat {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        @keyframes appleFall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            100% { transform: translateY(0) rotate(360deg); opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .music-player-container {
+                padding: 12px;
+            }
+            
+            .music-player {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .song-info {
+                margin-left: 0;
+                text-align: center;
+            }
+            
+            .interactive-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .interactive-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .photo-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .timeline-date {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="lotus-icon">
+                <i class="fas fa-spa"></i>
+            </div>
+            <h1>Happy 2 Months, Shifu!</h1>
+            <div class="anniversary-number">2 Magical Months Together</div>
+            <p class="subtitle">11th November 2025 - 11th January 2026</p>
+            <p>Every day with you is a lesson in love <span class="lotus">🌸</span></p>
+        </header>
+        
+        <!-- Music Player Section -->
+        <div class="music-player-container">
+            <h3 style="margin-bottom: 15px; color: white;">Our Love Playlist <i class="fas fa-music"></i></h3>
+            <div class="music-player">
+                <div class="player-controls">
+                    <button class="prev-next-btn" id="prevBtn">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button class="play-pause-btn" id="playPauseBtn">
+                        <i class="fas fa-play" id="playIcon"></i>
+                    </button>
+                    <button class="prev-next-btn" id="nextBtn">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                </div>
+                
+                <div class="song-info">
+                    <div class="song-title" id="currentSongTitle">Cariño</div>
+                    <div class="song-artist" id="currentSongArtist">The Marías</div>
+                </div>
+                
+                <div class="volume-control">
+                    <i class="fas fa-volume-up" style="color: white;"></i>
+                    <input type="range" min="0" max="100" value="70" class="volume-slider" id="volumeSlider">
+                </div>
+            </div>
+            
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="time-display">
+                <span id="currentTime">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+            <div class="audio-warning" id="audioWarning">
+                Click the play button to start the music
+            </div>
+            
+            <div class="playlist" id="playlist">
+                <!-- Playlist items will be added by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="photo-frame">
+                <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Our Photo" id="mainPhoto">
+                <div class="photo-caption">Our favorite memory together</div>
+            </div>
+            
+            <div class="memory-box">
+                <h2>To My Dearest Shifu <span class="green-heart">💚</span></h2>
+                <p>These past two months have been the most beautiful journey of my life. You've taught me so much about love, patience, and happiness - just like a true Shifu guides their pupil.</p>
+                <p>Your love for green inspires me every day, and I promise to keep our world as vibrant as your favorite color.</p>
+                
+                <div class="interactive-section">
+                    <button class="interactive-btn" id="messageBtn">
+                        <i class="fas fa-heart green-heart"></i> My Promise
+                    </button>
+                    <button class="interactive-btn" id="memoryBtn">
+                        <i class="fas fa-images"></i> Our Memories
+                    </button>
+                    <button class="interactive-btn" id="countdownBtn">
+                        <i class="fas fa-clock"></i> Our Time
+                    </button>
+                    <button class="interactive-btn" id="letterBtn">
+                        <i class="fas fa-envelope"></i> Love Letter
+                    </button>
+                    <button class="interactive-btn" id="appleBtn">
+                        <i class="fas fa-apple-alt"></i> Green Apples
+                    </button>
+                    <button class="interactive-btn music-btn" id="musicBtn">
+                        <i class="fas fa-music"></i> Our Playlist
+                    </button>
+                    <button class="interactive-btn" id="timelineBtn">
+                        <i class="fas fa-history"></i> Our Journey
+                    </button>
+                </div>
+                
+                <div class="love-message" id="loveMessage">
+                    <h3>My Promise to You, Shifu</h3>
+                    <p>I promise to always be your dedicated pupil in love - learning from you, growing with you, and cherishing every moment we share.</p>
+                    <p>I promise to fill your life with farts and all the happiness you deserve.</p>
+                    <p>With all my love, your faithful Pupil <span class="green-heart">💚</span></p>
+                </div>
+                
+                <div class="love-letter" id="loveLetter">
+                    <p>My Dearest Shifu,</p>
+                    <p>It's been two months since November 11th, 2025, and every single day has been a beautiful chapter in our story. You've shown me what it means to truly connect with someone - to laugh together, dream together, and grow together.</p>
+                    <p>Like a lotus rising from the water, our love has blossomed beautifully. And just like apples, every moment with you is crisp, refreshing, and wonderfully sweet.</p>
+                    <p>Thank you for being my Shifu in this journey of love. I'm excited for all the months and years ahead as your devoted Pupil.</p>
+                    <p>Forever yours,</p>
+                    <p><span id="yourName">Your Pupil</span></p>
+                </div>
+                
+                <div class="photo-gallery" id="photoGallery">
+                    <!-- Photos will be added here by JavaScript -->
+                </div>
+                
+                <div class="countdown" id="countdownTimer">
+                    <h3>Our Beautiful Time Together</h3>
+                    <div class="countdown-timer">
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="months">2</div>
+                            <div>Months</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="weeks">8</div>
+                            <div>Weeks</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="days">61</div>
+                            <div>Days</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="hours">1464</div>
+                            <div>Hours</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; font-style: italic;">And every moment keeps getting better!</p>
+                </div>
+                
+                <div class="green-apple-section" id="appleSection">
+                    <h3>For My Green-Loving Shifu <i class="fas fa-apple-alt" style="color: #8BC34A;"></i></h3>
+                    <p>Click on the green apples to reveal sweet messages!</p>
+                    <div class="apple-container" id="appleContainer">
+                        <!-- Apples will be added here by JavaScript -->
+                    </div>
+                    <div class="apple-message" id="appleMessage">
+                        <!-- Apple messages will appear here -->
+                    </div>
+                </div>
+                
+                <div class="relationship-timeline" id="relationshipTimeline">
+                    <h3>Our Journey Together</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">11 Nov 2025</div>
+                        <div class="timeline-content">
+                            <strong>The Beginning</strong>
+                            <p>The day we officially started our beautiful journey together. Our first date as Shifu and Pupil.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">25 Dec 2025</div>
+                        <div class="timeline-content">
+                            <strong>First Christmas</strong>
+                            <p>Our first holiday season together - filled with warmth, laughter, and special memories.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1 Jan 2026</div>
+                        <div class="timeline-content">
+                            <strong>New Year Together</strong>
+                            <p>Welcoming 2026 hand in hand, dreaming of all the beautiful moments ahead.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">11 Jan 2026</div>
+                        <div class="timeline-content">
+                            <strong>2 Month Anniversary</strong>
+                            <p>Today! Celebrating two months of love, growth, and happiness together.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <span class="heart">♥</span> and <span class="lotus">🌸</span> for my beautiful Shifu</p>
+            <p>Thank you for these amazing 2 months. Here's to many more! <span class="green-heart">💚</span></p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">From your devoted Pupil</p>
+        </footer>
+    </div>
+
+    <script>
+        // Customize these values for your anniversary
+        const anniversaryDate = new Date("2025-11-11"); // Your start date
+        const currentDate = new Date("2026-01-11"); // Today's date
+        const yourName = "Your Pupil"; // Change to your name
+        const partnerName = "Shifu"; // Your partner's name
+        
+        // Sample photo URLs - REPLACE THESE WITH YOUR ACTUAL PHOTO LINKS
+        const photoUrls = [
+            "https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+            "https://lh3.googleusercontent.com/pw/AP1GczMXcYscdf77i1MfYG_xKb8EopRGFb4Q0DR-4AYEw0Xgl5hBzjTkNIFDIaIikTa99RqJY6iqQbqExSFq9u3hKCQHlu1cxhQ4zHty15m4BALhuO9cgCvVkMD5V5dgFPJKhN4_Fc8ow8G1V7lCVfNRN3U=w1280-h576-s-no-gm",
+            "https://lh3.googleusercontent.com/pw/AP1GczMv_Dl7WeyT1i_WqqwWxPE1AYx7b5eysMqHGm0VnvfNmdWM0gZLB9Sfdw5H_u12sj096hhFSUR5vP8vQ97WgY04bwRGl0Wbe6Bvxi8fu_Jj9hM9pbw4OlPWZxPLRDbQ1HWE5B2JUKNE7O2Og2A9IC8=w1920-h843-s-no-gm?authuser=0",
+            "https://lh3.googleusercontent.com/pw/AP1GczODWbE-ajIEcTVzqyGRBu04ggs5myLeZHYOkO0ghMfuYReOeVoWc-5u0I8o_NjeQCp07QQfEITIf6KMToKTVWUCKynHw9EYbwpR5lfBTp_FJq4kbOLKu1VyyWhL8BJLOfVYA4j0nafSgYoEOFlowZE=w714-h953-s-no-gm?authuser=0",
+            "https://lh3.googleusercontent.com/pw/AP1GczPuKRY-hrrh9a_cXJPUS5CuwCmP2paYh_DaW3ynj9U3HO6C58lcALrMuu07tRBx_hIY4WBQUvZIic8rLhpFbmQEdLKAGPByfyHY-l9EBoRIN3i9pJNr9pbTzU6bt3yuSVVbnqvT0Uv89DbC9ml0C68=w715-h953-s-no-gm?authuser=0",
+            "https://lh3.googleusercontent.com/pw/AP1GczMpfb5DMIrL4mFnzsoCfISPIfIK3_hdn9-n9qfNFGNFNQx5_LxzYknF3EddzVSh8luy1729GrnAm7hbP898NL9abs26uwrgIt3QwJmcx_gpivLqthgk92Z8owRdtTDSTzLc9vfmGzfEdn5oNH4a-Js=w1269-h953-s-no-gm?authuser=0"
+        ];
+        
+        // Apple messages
+        const appleMessages = [
+            "You make every day brighter, just like your favorite green!",
+            "My love for you grows every day, like a lotus in bloom.",
+            "You're the sweetest part of my life, my Shifu.",
+            "Two months down, forever to go!",
+            "Your smile is my favorite shade of green.",
+            "Every moment with you is precious.",
+            "Thank you for teaching me how to love.",
+            "You're my favorite hello and hardest goodbye."
+        ];
+        
+        // Music Playlist - USING PUBLICLY AVAILABLE AUDIO SOURCES
+        const playlist = [
+            {
+                title: "Cariño",
+                artist: "The Marías",
+                src: "https://drive.google.com/uc?export=download&id=1Q5sLOLc6myyRSu3k2UreTIX7C9dcu205",
+                backupSrc: "https://drive.google.com/uc?export=download&id=1Q5sLOLc6myyRSu3k2UreTIX7C9dcu205"
+            },
+            {
+                title: "Amtrak",
+                artist: "Los Retros",
+                src: "https://drive.google.com/file/d/1MOH50y4ioXapAiET_kjMlRxiwvZhvlkv/preview"
+            },
+            {
+                title: "Kiss of Life",
+                artist: "Sade",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+            },
+            {
+                title: "Cherry Wine",
+                artist: "grentperez",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
+            },
+            {
+                title: "Valentine",
+                artist: "Laufey",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
+            },
+            {
+                title: "Tu",
+                artist: "Maye",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
+            },
+            {
+                title: "Would You Mind",
+                artist: "HYBS",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"
+            },
+            {
+                title: "Show Me How",
+                artist: "Men I Trust",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
+            },
+            {
+                title: "My Love",
+                artist: "Maye",
+                src: "https://soundcloud.com/kero-sene-133871908/maye-my-love-official-music-video-3?in=kero-sene-133871908/sets/sdfgd&si=89f1560b809e44c3985344173d689350&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+            },
+            {
+                title: "Glue Song",
+                artist: "beabadoobee",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3"
+            },
+            {
+                title: "Kingston",
+                artist: "Faye Webster",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3"
+            }
+        ];
+        
+        // DOM Elements
+        const messageBtn = document.getElementById('messageBtn');
+        const memoryBtn = document.getElementById('memoryBtn');
+        const countdownBtn = document.getElementById('countdownBtn');
+        const letterBtn = document.getElementById('letterBtn');
+        const appleBtn = document.getElementById('appleBtn');
+        const musicBtn = document.getElementById('musicBtn');
+        const timelineBtn = document.getElementById('timelineBtn');
+        const loveMessage = document.getElementById('loveMessage');
+        const loveLetter = document.getElementById('loveLetter');
+        const photoGallery = document.getElementById('photoGallery');
+        const countdownTimer = document.getElementById('countdownTimer');
+        const appleSection = document.getElementById('appleSection');
+        const appleContainer = document.getElementById('appleContainer');
+        const appleMessage = document.getElementById('appleMessage');
+        const relationshipTimeline = document.getElementById('relationshipTimeline');
+        const yourNameElement = document.getElementById('yourName');
+        const mainPhoto = document.getElementById('mainPhoto');
+        const audioWarning = document.getElementById('audioWarning');
+        
+        // Music Player Elements
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const currentSongTitle = document.getElementById('currentSongTitle');
+        const currentSongArtist = document.getElementById('currentSongArtist');
+        const playlistElement = document.getElementById('playlist');
+        const playIcon = document.getElementById('playIcon');
+        const progressBar = document.getElementById('progressBar');
+        const progressContainer = document.getElementById('progressContainer');
+        const currentTimeElement = document.getElementById('currentTime');
+        const durationElement = document.getElementById('duration');
+        
+        // Audio Player
+        const audioPlayer = new Audio();
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        
+        // Set personalized content
+        document.title = `Happy 2 Months, Shifu! ❤️`;
+        yourNameElement.textContent = yourName;
+        
+        // Set main photo to first photo in gallery
+        mainPhoto.src = photoUrls[0];
+        
+        // Initialize Music Player
+        function initMusicPlayer() {
+            // Load first song
+            loadSong(currentSongIndex);
+            
+            // Create playlist items
+            playlist.forEach((song, index) => {
+                const playlistItem = document.createElement('div');
+                playlistItem.className = 'playlist-item';
+                if (index === currentSongIndex) {
+                    playlistItem.classList.add('active');
+                }
+                
+                playlistItem.innerHTML = `
+                    <i class="fas fa-music"></i>
+                    <div>
+                        <div style="font-weight: 600;">${song.title}</div>
+                        <div style="font-size: 0.8rem; opacity: 0.9;">${song.artist}</div>
+                    </div>
+                `;
+                
+                playlistItem.addEventListener('click', () => {
+                    loadSong(index);
+                    playSong();
+                });
+                
+                playlistElement.appendChild(playlistItem);
+            });
+            
+            // Play/Pause button
+            playPauseBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    pauseSong();
+                } else {
+                    playSong();
+                }
+            });
+            
+            // Add click event to whole document to enable audio
+            document.addEventListener('click', enableAudio);
+            
+            // Previous button
+            prevBtn.addEventListener('click', () => {
+                currentSongIndex--;
+                if (currentSongIndex < 0) {
+                    currentSongIndex = playlist.length - 1;
+                }
+                loadSong(currentSongIndex);
+                playSong();
+            });
+            
+            // Next button
+            nextBtn.addEventListener('click', () => {
+                currentSongIndex++;
+                if (currentSongIndex >= playlist.length) {
+                    currentSongIndex = 0;
+                }
+                loadSong(currentSongIndex);
+                playSong();
+            });
+            
+            // Volume control
+            volumeSlider.addEventListener('input', (e) => {
+                audioPlayer.volume = e.target.value / 100;
+            });
+            
+            // Progress bar click
+            progressContainer.addEventListener('click', (e) => {
+                const width = progressContainer.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audioPlayer.duration;
+                
+                if (duration) {
+                    audioPlayer.currentTime = (clickX / width) * duration;
+                }
+            });
+            
+            // Update progress bar
+            audioPlayer.addEventListener('timeupdate', () => {
+                if (audioPlayer.duration) {
+                    const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                    progressBar.style.width = `${progressPercent}%`;
+                    
+                    // Update time display
+                    currentTimeElement.textContent = formatTime(audioPlayer.currentTime);
+                    durationElement.textContent = formatTime(audioPlayer.duration);
+                }
+            });
+            
+            // Auto-play next song
+            audioPlayer.addEventListener('ended', () => {
+                currentSongIndex++;
+                if (currentSongIndex >= playlist.length) {
+                    currentSongIndex = 0;
+                }
+                loadSong(currentSongIndex);
+                playSong();
+            });
+            
+            // Update time when metadata loads
+            audioPlayer.addEventListener('loadedmetadata', () => {
+                durationElement.textContent = formatTime(audioPlayer.duration);
+            });
+            
+            // Handle audio errors
+            audioPlayer.addEventListener('error', (e) => {
+                console.log("Audio error:", e);
+                audioWarning.textContent = "Could not load audio. Please try another song.";
+                audioWarning.style.color = "#ffcc00";
+                
+                // Try backup source if available
+                const currentSong = playlist[currentSongIndex];
+                if (currentSong.backupSrc && audioPlayer.src !== currentSong.backupSrc) {
+                    setTimeout(() => {
+                        audioPlayer.src = currentSong.backupSrc;
+                        audioPlayer.load();
+                        playSong();
+                        audioWarning.textContent = "Using backup audio source";
+                    }, 1000);
+                }
+            });
+            
+            // Set initial volume
+            audioPlayer.volume = volumeSlider.value / 100;
+        }
+        
+        function enableAudio() {
+            // Remove this listener after first click
+            document.removeEventListener('click', enableAudio);
+            audioWarning.textContent = "Click the play button to start the music";
+            
+            // Try to play a silent sound to unlock audio
+            const silentAudio = new Audio();
+            silentAudio.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==";
+            silentAudio.play().then(() => {
+                console.log("Audio context unlocked");
+            }).catch(e => {
+                console.log("Could not unlock audio:", e);
+            });
+        }
+        
+        function formatTime(seconds) {
+            if (isNaN(seconds) || !isFinite(seconds)) return "0:00";
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+        
+        function loadSong(index) {
+            const song = playlist[index];
+            
+            // Update UI
+            currentSongTitle.textContent = song.title;
+            currentSongArtist.textContent = song.artist;
+            
+            // Update active playlist item
+            document.querySelectorAll('.playlist-item').forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add('active');
+                    // Scroll to active item
+                    item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            
+            currentSongIndex = index;
+            
+            // Reset progress bar
+            progressBar.style.width = '0%';
+            currentTimeElement.textContent = '0:00';
+            durationElement.textContent = '0:00';
+            audioWarning.textContent = "Loading song...";
+            audioWarning.style.color = "rgba(255, 255, 255, 0.8)";
+            
+            // Load new song
+            audioPlayer.src = song.src;
+            audioPlayer.load();
+            
+            // Auto-play if previous song was playing
+            if (isPlaying) {
+                setTimeout(() => {
+                    playSong();
+                }, 500);
+            }
+        }
+        
+        function playSong() {
+            audioPlayer.play()
+                .then(() => {
+                    isPlaying = true;
+                    playIcon.className = 'fas fa-pause';
+                    playPauseBtn.style.transform = 'scale(1.1)';
+                    playPauseBtn.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.5)';
+                    audioWarning.textContent = "Now playing";
+                    audioWarning.style.color = "rgba(255, 255, 255, 0.9)";
+                })
+                .catch(error => {
+                    console.log("Play error:", error);
+                    isPlaying = false;
+                    playIcon.className = 'fas fa-play';
+                    audioWarning.textContent = "Click play to start music";
+                    audioWarning.style.color = "rgba(255, 255, 255, 0.8)";
+                    
+                    // Show a more specific error message
+                    if (error.name === 'NotAllowedError') {
+                        audioWarning.textContent = "Please allow audio playback in your browser";
+                    } else if (error.name === 'NotSupportedError') {
+                        audioWarning.textContent = "Audio format not supported. Try another song.";
+                    }
+                });
+        }
+        
+        function pauseSong() {
+            audioPlayer.pause();
+            isPlaying = false;
+            playIcon.className = 'fas fa-play';
+            playPauseBtn.style.transform = 'scale(1)';
+            playPauseBtn.style.boxShadow = 'none';
+            audioWarning.textContent = "Paused";
+        }
+        
+        // Populate photo gallery
+        photoUrls.forEach(url => {
+            const img = document.createElement('img');
+            img.src = url;
+            img.alt = "Our Memory";
+            img.addEventListener('click', () => {
+                mainPhoto.src = url;
+                mainPhoto.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    mainPhoto.style.transform = 'scale(1)';
+                }, 300);
+            });
+            photoGallery.appendChild(img);
+        });
+        
+        // Create green apples
+        for (let i = 0; i < 8; i++) {
+            const apple = document.createElement('div');
+            apple.className = 'apple';
+            apple.style.animation = `appleFall ${0.5 + i*0.1}s ease forwards`;
+            apple.style.opacity = '0';
+            
+            const stem = document.createElement('div');
+            stem.className = 'apple-stem';
+            
+            const leaf = document.createElement('div');
+            leaf.className = 'apple-leaf';
+            
+            apple.appendChild(stem);
+            apple.appendChild(leaf);
+            
+            apple.addEventListener('click', () => {
+                appleMessage.textContent = appleMessages[i];
+                appleMessage.style.display = 'block';
+                apple.style.transform = 'scale(1.3)';
+                setTimeout(() => {
+                    apple.style.transform = 'scale(1.2)';
+                }, 300);
+            });
+            
+            appleContainer.appendChild(apple);
+        }
+        
+        // Interactive button functionality
+        messageBtn.addEventListener('click', () => {
+            hideAllSections();
+            loveMessage.style.display = 'block';
+        });
+        
+        memoryBtn.addEventListener('click', () => {
+            hideAllSections();
+            photoGallery.style.display = 'grid';
+        });
+        
+        countdownBtn.addEventListener('click', () => {
+            hideAllSections();
+            countdownTimer.style.display = 'block';
+            updateCountdown();
+        });
+        
+        letterBtn.addEventListener('click', () => {
+            hideAllSections();
+            loveLetter.style.display = 'block';
+        });
+        
+        appleBtn.addEventListener('click', () => {
+            hideAllSections();
+            appleSection.style.display = 'block';
+            appleMessage.style.display = 'none';
+        });
+        
+        musicBtn.addEventListener('click', () => {
+            // Scroll to music player
+            document.querySelector('.music-player-container').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+            
+            // Add a little visual feedback
+            musicBtn.style.animation = 'heartbeat 0.5s';
+            setTimeout(() => {
+                musicBtn.style.animation = '';
+            }, 500);
+        });
+        
+        timelineBtn.addEventListener('click', () => {
+            hideAllSections();
+            relationshipTimeline.style.display = 'block';
+        });
+        
+        // Hide all sections
+        function hideAllSections() {
+            loveMessage.style.display = 'none';
+            loveLetter.style.display = 'none';
+            photoGallery.style.display = 'none';
+            countdownTimer.style.display = 'none';
+            appleSection.style.display = 'none';
+            relationshipTimeline.style.display = 'none';
+            appleMessage.style.display = 'none';
+        }
+        
+        // Calculate time since anniversary
+        function updateCountdown() {
+            const now = currentDate;
+            const diff = now - anniversaryDate;
+            
+            // Calculate months, weeks, days, and hours
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+            const weeks = Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            
+            // Update display
+            document.getElementById('months').textContent = months;
+            document.getElementById('weeks').textContent = weeks;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+        }
+        
+        // Initialize countdown
+        updateCountdown();
+        
+        // Initialize music player
+        initMusicPlayer();
+        
+        // Add floating lotus flowers
+        function createFloatingLotus() {
+            const lotus = document.createElement('div');
+            lotus.innerHTML = '🌸';
+            lotus.style.position = 'fixed';
+            lotus.style.color = '#4CAF50';
+            lotus.style.fontSize = Math.random() * 25 + 15 + 'px';
+            lotus.style.left = Math.random() * 100 + 'vw';
+            lotus.style.top = '100vh';
+            lotus.style.opacity = '0.8';
+            lotus.style.pointerEvents = 'none';
+            lotus.style.zIndex = '-1';
+            document.body.appendChild(lotus);
+            
+            // Animate lotus floating up
+            const animation = lotus.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 0.8 },
+                { transform: `translateY(-${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: Math.random() * 4000 + 6000,
+                easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+            });
+            
+            // Remove lotus after animation completes
+            animation.onfinish = () => {
+                lotus.remove();
+            };
+        }
+        
+        // Create floating lotuses periodically
+        setInterval(createFloatingLotus, 1500);
+        
+        // Create initial lotuses
+        for (let i = 0; i < 8; i++) {
+            setTimeout(createFloatingLotus, i * 400);
+        }
+        
+        // Add click effect for lotuses
+        document.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('interactive-btn') && 
+                !e.target.closest('.music-player-container')) {
+                createFloatingLotus();
+                
+                // Also create occasional green hearts
+                if (Math.random() > 0.7) {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '💚';
+                    heart.style.position = 'fixed';
+                    heart.style.left = e.pageX + 'px';
+                    heart.style.top = e.pageY + 'px';
+                    heart.style.fontSize = '25px';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '9999';
+                    heart.style.animation = 'heartbeat 0.5s ease';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 1000);
+                }
+            }
+        });
+        
+        // Auto-show the love message after 3 seconds
+        setTimeout(() => {
+            hideAllSections();
+            loveMessage.style.display = 'block';
+        }, 3000);
+        
+        console.log(`🎵 All your songs have been added to the playlist!`);
+        console.log(`1. Cariño - The Marías`);
+        console.log(`2. Amtrak - Los Retros`);
+        console.log(`3. Kiss of Life - Sade`);
+        console.log(`4. Cherry Wine - grentperez`);
+        console.log(`5. Valentine - Laufey`);
+        console.log(`6. Tu - Maye`);
+        console.log(`7. Would You Mind - HYBS`);
+        console.log(`8. Show Me How - Men I Trust`);
+        console.log(`9. My Love - Maye`);
+        console.log(`10. Glue Song - beabadoobee`);
+        console.log(`11. Kingston - Faye Webster`);
+        console.log(`\n💚 IMPORTANT: To add YOUR photos, replace the photoUrls array with your image links!`);
+        console.log(`💚 Current audio sources are working demo tracks. For actual songs:`);
+        console.log(`1. Upload your MP3 files to Google Drive, Dropbox, or OneDrive`);
+        console.log(`2. Get shareable links (make sure they're public)`);
+        console.log(`3. Replace the 'src' values in the playlist array with your links`);
+    </script>
+</body>
+</html>
